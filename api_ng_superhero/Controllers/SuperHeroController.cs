@@ -1,5 +1,4 @@
 ﻿using api_ng_superhero.Data;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -51,14 +50,16 @@ namespace api_ng_superhero.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<List<SuperHero>>> DeleteSuperHero(int id)
         {
-         var dbHero = await _context.SuperHeroes.FindAsync(id);
+            var dbHero = await _context.SuperHeroes.FindAsync(id);
             if (dbHero == null) return BadRequest("hero not found");
-        return Ok(await _context.SuperHeroes.ToListAsync());
-        
+
+            _context.SuperHeroes.Remove(dbHero);    
+            return Ok(await _context.SuperHeroes.ToListAsync());
+
         }
 
 
 
 
-}
+    }
 }
