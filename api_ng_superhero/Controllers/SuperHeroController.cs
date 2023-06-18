@@ -60,6 +60,5 @@ namespace api_ng_superhero.Controllers
 
 
 
-
     }
 }
